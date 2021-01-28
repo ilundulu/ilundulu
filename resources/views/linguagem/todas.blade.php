@@ -10,7 +10,7 @@
                 <div class="product-status-wrap">
                     <h4>Lista de Linguagens Dísponiveis</h4>
                     <div class="add-product">
-                        <!--<a href="#">Add Library</a>-->
+                        <a href="/linguagem/adicionar/">Add Linguagem</a>
                     </div>
                     <div class="asset-inner">
                         <table>

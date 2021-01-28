@@ -18,4 +18,13 @@ class LinguagemController extends Controller
         $linguagens = Linguagen::all();
         return view('linguagem.todas',['linguagens' => $linguagens]);
     }
+
+    public function store(Request $request){
+        $linguagem = new Linguagen();
+        $linguagem->nome = $request->nome;
+        $linguagem->compilador_interpretador = $request->compilador_interpretador;
+        $linguagem->descricao = $request->descricao;
+        $linguagem->save();
+        return redirect('/linguagem/lista/')->with('msg', 'Linguagem adicionada com sucesso');
+    }
 }

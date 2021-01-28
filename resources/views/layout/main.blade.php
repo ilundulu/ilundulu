@@ -15,11 +15,15 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
         <!-- Bootstrap CSS
             ============================================ -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        
+        
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            
         <!-- Bootstrap CSS
             ============================================ -->
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         
+
         <!-- owl.carousel CSS
             ============================================ -->
         <link rel="stylesheet" href="/css/owl.carousel.css">
@@ -294,7 +298,15 @@
             </div>
             <!-- Conteudo-->
 
-            @yield('content')
+            <div class="container-fluid">
+                <div class="row">
+                    @if (session('msg'))
+                        <p>{{session('msg')}}</p>
+                    @endif
+                    @yield('content')
+                </div>
+            </div>
+            
 
 
             <!-- Fim conteudo-->

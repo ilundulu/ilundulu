@@ -18,6 +18,7 @@ Route::get('/', [HomeController::class,'index']);
 use App\Http\Controllers\LinguagemController;
 Route::get('/linguagem/adicionar/', [LinguagemController::class,'create']);
 Route::get('/linguagem/lista/', [LinguagemController::class,'tDados']);
+Route::post('/linguagem', [LinguagemController::class,'store']);
 
 use App\Http\Controllers\ProjectoController;
 Route::get('/projecto/criar/', [ProjectoController::class,'create']);
