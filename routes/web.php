@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class,'index']);
+Route::get('/home/logout', [HomeController::class,'logout']);
+
 
 use App\Http\Controllers\LinguagemController;
 Route::get('/linguagem/adicionar/', [LinguagemController::class,'create']);
@@ -21,4 +23,11 @@ Route::get('/linguagem/lista/', [LinguagemController::class,'tDados']);
 Route::post('/linguagem', [LinguagemController::class,'store']);
 
 use App\Http\Controllers\ProjectoController;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/projecto/criar/', [ProjectoController::class,'create']);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    $user = Auth::user();
+    return view('dashboard',['user'=>$user]);
+})->name('dashboard');
