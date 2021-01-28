@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\HomeController;
+Route::get('/', [HomeController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\LinguagemController;
+Route::get('/linguagem/adicionar/', [LinguagemController::class,'create']);
+Route::get('/linguagem/lista/', [LinguagemController::class,'tDados']);
+
+use App\Http\Controllers\ProjectoController;
+Route::get('/projecto/criar/', [ProjectoController::class,'create']);

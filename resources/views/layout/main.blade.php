@@ -109,20 +109,20 @@
                             <li>
                                 <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Projecto</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">Adicionar Projecto</span></a></li>
-                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
-                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
-                                    <li><a title="Edit Students" href="edit-student.html"><span class="mini-sub-pro">Adicionar Enunciado</span></a></li>
-                                    <li><a title="Students Profile" href="student-profile.html"><span class="mini-sub-pro">Testar Projectos</span></a></li>
+                                    <li><a href="/projecto/criar/"><span class="mini-sub-pro">Criar Projecto</span></a></li>
+                                    <li><a href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
+                                    <li><a href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
+                                    <li><a href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
+                                    <li><a href="edit-student.html"><span class="mini-sub-pro">Adicionar Enunciado</span></a></li>
+                                    <li><a href="student-profile.html"><span class="mini-sub-pro">Testar Projectos</span></a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Linguagens</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Adicionar</span></a></li>
-                                    <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Editar</span></a></li>
+                                    <li><a href="/linguagem/adicionar/"><span class="mini-sub-pro">Adicionar</span></a></li>
+                                    <li><a href="/linguagem/lista/"><span class="mini-sub-pro">Vizualizar</span></a></li>
                                 </ul>
                             </li>
                         </ul>
