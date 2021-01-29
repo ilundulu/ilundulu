@@ -24,8 +24,10 @@ Route::post('/linguagem', [LinguagemController::class,'store']);
 
 use App\Http\Controllers\ProjectoController;
 use Illuminate\Support\Facades\Auth;
-
 Route::get('/projecto/criar/', [ProjectoController::class,'create']);
+Route::post('/projecto', [ProjectoController::class,'store']);
+Route::get('/projecto/lista/', [ProjectoController::class,'tDados']);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = Auth::user();
