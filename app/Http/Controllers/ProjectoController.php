@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Projecto;
 use App\Models\Linguagen;
+use Illuminate\Support\Facades\DB;
+
 class ProjectoController extends Controller
 {
 
@@ -36,5 +38,14 @@ class ProjectoController extends Controller
 
         $projecto->save();
         return redirect('/projecto/lista/')->with('msg', 'Projecto adicionado com sucesso');
+    }
+
+    public function allProjectosLinguagens(){       
+        $projectos = DB::table('projectos')
+            ->join('linguagens', 'projectos.id_linguagem', '=', 'linguagens.id')
+            ->join('users', 'projectos.id_user', '=', 'users.id')
+            ->select('projectos.*', DB::raw('linguagens.nome as lpname'), DB::raw('users.name as usname'))
+            ->get();
+        return view('projecto.todos',['projectos' => $projectos]);
     }
 }

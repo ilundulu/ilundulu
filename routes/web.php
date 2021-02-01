@@ -23,13 +23,21 @@ Route::get('/linguagem/lista/', [LinguagemController::class,'tDados']);
 Route::post('/linguagem', [LinguagemController::class,'store']);
 
 use App\Http\Controllers\ProjectoController;
+use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 Route::get('/projecto/criar/', [ProjectoController::class,'create']);
 Route::post('/projecto', [ProjectoController::class,'store']);
-Route::get('/projecto/lista/', [ProjectoController::class,'tDados']);
+Route::get('/projecto/lista/', [ProjectoController::class,'allProjectosLinguagens'])->middleware();
+
+
+Route::get('projecto/enunciado/{projecto_nome}/{projecto_enunciado}',function ($projecto_nome,$projecto_enunciado){
+    return view('pdf.show',["nome"=>base64_decode($projecto_nome),"enunciado"=>base64_decode($projecto_enunciado)]);
+});
+
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = Auth::user();
-    return view('dashboard',['user'=>$user]);
+    return view('dashboard');
 })->name('dashboard');

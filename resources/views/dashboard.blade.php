@@ -114,7 +114,7 @@
                                 <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Projecto</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li><a href="/projecto/criar/"><span class="mini-sub-pro">Criar Projecto</span></a></li>
-                                    <li><a href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
+                                    <li><a href="/projecto/lista/"><span class="mini-sub-pro">Vizualizar Projectos</span></a></li>
                                     <li><a href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
                                     <li><a href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
                                     <li><a href="edit-student.html"><span class="mini-sub-pro">Adicionar Enunciado</span></a></li>
@@ -184,7 +184,12 @@
                                                     <li class="nav-item">
                                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                                 <img src="&" alt="" />
-                                                                <span class="admin-name">{{$user->name}}</span>
+                                                                <span class="admin-name">
+                                                                    <?php
+                                                                        $user = Auth::user();
+                                                                        echo $user->name;    
+                                                                    ?>                                                               
+                                                                </span>
                                                                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                             </a>
                                                         <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -305,14 +310,11 @@
             </div>
             <!-- Conteudo-->
 
-            <div class="container-fluid">
-                <div class="row">
                     @if (session('msg'))
                         <p>{{session('msg')}}</p>
                     @endif
                     @yield('content')
-                </div>
-            </div>
+ 
             
 
 
