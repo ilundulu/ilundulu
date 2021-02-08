@@ -74,63 +74,12 @@
         <![endif]-->
         <!-- Start Left menu area -->
         <div class="left-sidebar-pro">
-            <nav id="sidebar" class="">
+            <nav id="sidebar" class="bg-ligth">
                 <div class="sidebar-header">
-                    <a href="/"><img class="main-logo" src="/img/logo/logo.png" alt="" /></a>
-                    <strong><a href="/"><img src="/img/logo/logosn.png" alt="" /></a></strong>
+                    <a href=""><img class="main-logo"  style="width: 80%" src="{{asset('/img/logo/logo.png')}}" alt="" /></a>
+                    <strong><a href=""><img src="{{asset('/img/logo/logosn.png')}}" alt="" /></a></strong>
                 </div>
-                <div class="left-custom-menu-adp-wrap comment-scrollbar">
-                    <nav class="sidebar-nav left-sidebar-menu-pro">
-                        <ul class="metismenu" id="menu1">
-                            <li class="">
-                                <a class="has-arrow" href="/">
-                                       <span class="educate-icon educate-home icon-wrap"></span>
-                                       <span class="mini-click-non">Densevolvedor</span>
-                                    </a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">Registrar</span></a></li>
-                                    <li><a title="Dashboard v.2" href="index-1.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Manager</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">Registar</span></a></li>
-                                    <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Editar</span></a></li>
-                    
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Equipa</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">Registrar</span></a></li>
-                                    <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                    <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Solicitar Equipa</span></a></li>
-                                    <li><a title="Edit Professor" href="edit-professor.html"><span class="mini-sub-pro">Convidar Desenvolvedor</span></a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Projecto</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a href="/projecto/criar/"><span class="mini-sub-pro">Criar Projecto</span></a></li>
-                                    <li><a href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                    <li><a href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
-                                    <li><a href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
-                                    <li><a href="edit-student.html"><span class="mini-sub-pro">Adicionar Enunciado</span></a></li>
-                                    <li><a href="student-profile.html"><span class="mini-sub-pro">Testar Projectos</span></a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Linguagens</span></a>
-                                <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a href="/linguagem/adicionar/"><span class="mini-sub-pro">Adicionar</span></a></li>
-                                    <li><a href="/linguagem/lista/"><span class="mini-sub-pro">Vizualizar</span></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                
             </nav>
         </div>
         <!-- End Left menu area -->
@@ -140,7 +89,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="logo-pro">
-                            <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                            <a href=""><img class="main-logo" src="asset{{'/img/logo/logo.png'}}" alt="" /></a>
                         </div>
                     </div>
                 </div>
@@ -187,7 +136,7 @@
                                                                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                             </a>
                                                         <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                            <li><a href="/login"><span class="edu-icon edu-home-admin author-log-ic"></span>Login</a>
+                                                            <li><a href="{{route('login')}}"><span class="edu-icon edu-home-admin author-log-ic"></span>Login</a>
                                                             </li>
                                                             <li><a href="/register"><span class="edu-icon edu-settings author-log-ic"></span>Criar Conta</a>
                                                             </li>
@@ -201,98 +150,8 @@
                                         
                                         </div>
                                         
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mobile Menu start -->
-                <div class="mobile-menu-area">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="mobile-menu">
-                                    <nav id="dropdown">
-                                        <ul class="mobile-menu-nav">
-                                        
-                                            <li class="">
-                                                <a class="has-arrow" href="/">
-                                                        <span class="educate-icon educate-home icon-wrap"></span>
-                                                        <span class="mini-click-non">Densevolvedor</span>
-                                                    </a>
-                                                <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">Registrar</span></a></li>
-                                                    <li><a title="Dashboard v.2" href="index-1.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Manager</span></a>
-                                                <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">Registar</span></a></li>
-                                                    <li><a title="Add Courses" href="add-course.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                    
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Equipa</span></a>
-                                                <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">Registrar</span></a></li>
-                                                    <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                                    <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Solicitar Equipa</span></a></li>
-                                                    <li><a title="Edit Professor" href="edit-professor.html"><span class="mini-sub-pro">Convidar Desenvolvedor</span></a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Projecto</span></a>
-                                                <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="All Students" href="all-students.html"><span class="mini-sub-pro">Adicionar Projecto</span></a></li>
-                                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
-                                                    <li><a title="Add Students" href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
-                                                    <li><a title="Edit Students" href="edit-student.html"><span class="mini-sub-pro">Adicionar Enunciado</span></a></li>
-                                                    <li><a title="Students Profile" href="student-profile.html"><span class="mini-sub-pro">Testar Projectos</span></a></li>
-                                                </ul>
-                                            </li>
-                
-                                            <li>
-                                                <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Linguagens</span></a>
-                                                <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Adicionar</span></a></li>
-                                                    <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Editar</span></a></li>
-                                                </ul>
-                                            </li>
-                                        
-                                        </ul>    
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mobile Menu end -->
-                <div class="breadcome-area">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="breadcome-list">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="breadcome-heading">
-                                                <form role="search" class="sr-input-func">
-                                                    <input type="text" placeholder="Pesquisar..." class="search-int form-control">
-                                                    <a href="#"><i class="fa fa-search"></i></a>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <ul class="breadcome-menu">
-                                                <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                                </li>
-                                                <li><span class="bread-blod">Dashboard V.1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -303,15 +162,17 @@
             <!-- Conteudo-->
 
             <div class="container-fluid">
-                <div class="row">
-                    @if (session('msg'))
-                        <p>{{session('msg')}}</p>
-                    @endif
-                    @yield('content')
+                
+                <div class="row" style=" padding:85px;font-weight: 700;">
+                    <h1>Ilundulu.</h1>
+                    <p class="lead">Plataforma de hospedagem de código-fonte de softwares
+                        com controlador de versões distribuído e ambiente de testes
+                        automatizado.</p>
+                    <p class="lead">
+                      <a href="#" class="btn btn-lg btn-secondary fw-bold border-white form-control">Ler Mais</a>
+                    </p>
                 </div>
             </div>
-            
-
 
             <!-- Fim conteudo-->
             <div class="footer-copyright-area">
