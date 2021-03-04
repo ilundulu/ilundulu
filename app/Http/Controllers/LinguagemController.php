@@ -25,6 +25,6 @@ class LinguagemController extends Controller
         $linguagem->compilador_interpretador = $request->compilador_interpretador;
         $linguagem->descricao = $request->descricao;
         $linguagem->save();
-        return redirect('/linguagem/lista/')->with('msg', 'Linguagem adicionada com sucesso');
+        return redirect()->route('allLinguagem')->with('msg', 'Linguagem adicionada com sucesso');
     }
 }

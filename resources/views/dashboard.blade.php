@@ -124,8 +124,8 @@
                             <li>
                                 <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Linguagens</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a href="/linguagem/adicionar/"><span class="mini-sub-pro">Adicionar</span></a></li>
-                                    <li><a href="/linguagem/lista/"><span class="mini-sub-pro">Vizualizar</span></a></li>
+                                    <li><a href="{{route('linguagem')}}"><span class="mini-sub-pro">Adicionar</span></a></li>
+                                    <li><a href="{{route('allLinguagem')}}"><span class="mini-sub-pro">Vizualizar</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -191,14 +191,41 @@
                                                                     <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                                 </a>
                                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                                <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>Minha Conta</a>
-                                                                </li>
-                                                                <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Definições</a>
+                                                                <li>
+                                                                    <!-- Account Management -->
+                                                                    <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                                                                        {{ __('Perfil') }}
+                                                                    </x-jet-responsive-nav-link>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="{{route('logout')}}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                                    <!-- Authentication -->
+                                                                    <form method="POST" action="{{ route('logout') }}">
+                                                                        @csrf
+
+                                                                        <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                                                                                    onclick="event.preventDefault();
+                                                                                        this.closest('form').submit();">
+                                                                            {{ __('Log Out') }}
+                                                                        </x-jet-responsive-nav-link>
+                                                                    </form>
                                                                 </li>
                                                             </ul>
+
+                                                            <!-- Responsive Settings Options -->
+                                                            <div class="pt-4 pb-1 border-t border-gray-200">
+                                                                <div class="flex items-center px-4">
+                                                                <div class="mt-3 space-y-1">
+
+
+                                                                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                                                        <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
+                                                                            {{ __('API Tokens') }}
+                                                                        </x-jet-responsive-nav-link>
+                                                                    @endif
+
+
+                                                                </div>
+                                                            </div>
                                                         </li>
                                            
                                                         
@@ -268,7 +295,7 @@
                                             <li>
                                                 <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Linguagens</span></a>
                                                 <ul class="submenu-angle" aria-expanded="false">
-                                                    <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Adicionar</span></a></li>
+                                                    <li><a href="{{route('addLinguagem')}}"><span class="mini-sub-pro">Adicionar</span></a></li>
                                                     <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Editar</span></a></li>
                                                 </ul>
                                             </li>
@@ -298,12 +325,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <ul class="breadcome-menu">
-                                                <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                                </li>
-                                                <li><span class="bread-blod">Dashboard V.1</span>
-                                                </li>
-                                            </ul>
+
                                         </div>
                                     </div>
                                 </div>
@@ -318,7 +340,14 @@
                 
                 <div class="row">
                     @if (session('msg'))
-                        <p>{{session('msg')}}</p>
+
+                        <div class="alert alert-success alert-success-style1 alert-st-bg alert-st-bg11">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                    <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                                </button>
+                            <i class="fa fa-check edu-checked-pro admin-check-pro admin-check-pro-clr admin-check-pro-clr11" aria-hidden="true"></i>
+                            <p><strong>Sucesso!</strong> {{session('msg')}}.</p>
+                        </div>
                     @endif
                     @yield('content')
                 </div>
@@ -332,7 +361,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer-copy-right">
-                                <p>Copyright © {{ date('Y') }}. All rights reserved.</p>
+                                <p style="text-align: left">Ilundulu {{ date('Y') }}.</p>
                             </div>
                         </div>
                     </div>
@@ -398,9 +427,10 @@
         <!-- main JS
             ============================================ -->
         <script src="{{ asset('js/main.js') }}"></script>
-        <!-- tawk chat JS
-            ============================================ -->
-        <script src="{{ asset('js/tawk-chat.js') }}"></script>
+
     </body>
     
-    </html>
+</html>
+
+
+

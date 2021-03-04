@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('dashboard')
 @section('title','Adicionar Linguagem')
 
 @section('content')
@@ -10,7 +10,7 @@
                 <div class="product-status-wrap">
                     <h4>Lista de Linguagens Dísponiveis</h4>
                     <div class="add-product">
-                        <a href="/linguagem/adicionar/">Add Linguagem</a>
+                        <a href="{{route('linguagem')}}">Add Linguagem</a>
                     </div>
                     <div class="asset-inner">
                         <table>

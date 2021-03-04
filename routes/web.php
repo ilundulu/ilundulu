@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectoController;
-use Facade\FlareClient\View;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EquipaController;
+use App\Http\Controllers\ProjectoController;
 use App\Http\Controllers\LinguagemController;
-use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,13 +18,21 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
-Route::get('/home/logout', [HomeController::class,'logout'])->name('logout');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+//Route::get('/', [HomeController::class,'index'])->name('home');
+//Route::get('/home/logout', [HomeController::class,'logout'])->name('logout');
 
 
-Route::get('/linguagem/adicionar/', [LinguagemController::class,'create'])->name('teste');
-Route::get('/linguagem/lista/', [LinguagemController::class,'tDados']);
-Route::post('/linguagem', [LinguagemController::class,'store']);
+Route::get('/linguagem/adicionar/', [LinguagemController::class,'create'])->name('linguagem');
+Route::get('/linguagem/lista/', [LinguagemController::class,'tDados'])->name('allLinguagem');
+Route::post('/linguagem', [LinguagemController::class,'store'])->name('addLinguagem');
 
 
 Route::get('/projecto/criar/', [ProjectoController::class,'create'])->name("projecto.criar");
@@ -39,9 +46,3 @@ Route::get('projecto/enunciado/{projecto_nome}/{projecto_enunciado}',function ($
 Route::get('/teste', [EquipaController::class, 'show']);
 Route::post('/equipa', [EquipaController::class, 'store']);
 Route::get('/ajax-autocomplete-search', [EquipaController::class, 'selectSearch']);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/login', [loginController::class, 'show'])->name('login');

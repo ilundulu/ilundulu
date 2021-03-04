@@ -10,4 +10,8 @@ class LoginController extends Controller
     public function show(){
         return view('auth.login');
     }
+
+    public function registro(){
+        return view('auth.register');
+    }
 }

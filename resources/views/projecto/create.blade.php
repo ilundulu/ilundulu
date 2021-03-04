@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('dashboard')
 @section('title','Criar Projecto')
 
 @section('content')
