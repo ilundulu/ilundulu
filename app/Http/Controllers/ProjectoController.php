@@ -31,11 +31,13 @@ class ProjectoController extends Controller
         //enunciado upload
         $imagem = $request->enunciado;
         $extencao = $imagem->extension();
-        $enunuciadoNome= md5($projecto->nome."-".strtotime("now")).'.'.$extencao;
-        $request->enunciado->move(public_path("pdf/enunciados/"),$enunuciadoNome); 
-
-        $projecto->enunciado = $enunuciadoNome;
-
+        if($extencao == "pdf"){
+            $enunuciadoNome= md5($projecto->nome."-".strtotime("now")).'.'.$extencao;
+            $request->enunciado->move(public_path("pdf/enunciados/"),$enunuciadoNome); 
+            $projecto->enunciado = $enunuciadoNome;
+        }else{
+            return redirect('/projecto/lista/')->with('msgErrorPdf', "A extensão ".$extencao." não é valida por favor use PDF");
+        }
         $projecto->save();
         return redirect('/projecto/lista/')->with('msg', 'Projecto adicionado com sucesso');
     }
@@ -48,4 +50,8 @@ class ProjectoController extends Controller
             ->get();
         return view('projecto.todos',['projectos' => $projectos]);
     }
+
+    public function enunciado($enunciado){
+        return view('pdf.show',['enunciado' => $enunciado]);
+    }  
 }

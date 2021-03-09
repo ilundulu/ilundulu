@@ -339,18 +339,34 @@
             <div class="container-fluid">
                 
                 <div class="row">
-                    @if (session('msg'))
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       
+                        @if (session('msg'))
 
-                        <div class="alert alert-success alert-success-style1 alert-st-bg alert-st-bg11">
+                            <div class="alert alert-success alert-success-style1 alert-st-bg alert-st-bg11">
+                                <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                        <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                                    </button>
+                                <i class="fa fa-check edu-checked-pro admin-check-pro admin-check-pro-clr admin-check-pro-clr11" aria-hidden="true"></i>
+                                <p><strong>Sucesso!</strong> {{session('msg')}}.</p>
+                            </div>
+                        @endif
+                        @if (session('msgErrorPdf'))
+
+                        <div class="alert alert-danger alert-mg-b alert-success-style4 alert-success-stylenone">
                             <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
                                     <span class="icon-sc-cl" aria-hidden="true">&times;</span>
                                 </button>
-                            <i class="fa fa-check edu-checked-pro admin-check-pro admin-check-pro-clr admin-check-pro-clr11" aria-hidden="true"></i>
-                            <p><strong>Sucesso!</strong> {{session('msg')}}.</p>
-                        </div>
-                    @endif
-                    @yield('content')
+                            <i class="fa fa-times edu-danger-error admin-check-pro admin-check-pro-none" aria-hidden="true"></i>
+                            <p><strong>Erro!</strong> {{session('msgErrorPdf')}}.</p>
+                            </div>
+                        @endif
+
+                    </div>
+
+                   
                 </div>
+                @yield('content')
             </div>
             
 

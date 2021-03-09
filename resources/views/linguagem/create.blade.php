@@ -22,10 +22,10 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
-                                                            <input name="nome" type="text" class="form-control" placeholder="Linguagem">
+                                                            <input name="nome" type="text" class="form-control" placeholder="Linguagem" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="compilador_interpretador" type="text" class="form-control" placeholder="Compilador/Interpretador">
+                                                            <input name="compilador_interpretador" type="text" class="form-control" placeholder="Compilador/Interpretador" required>
                                                         </div>
                                                         
 
@@ -33,7 +33,7 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                          
                                                         <div class="form-group">
-                                                            <textarea name="descricao" placeholder="Descrição"></textarea>
+                                                            <textarea name="descricao" placeholder="Descrição" required="true"></textarea>
                                                         </div>
                                                         
                                                     </div>

@@ -36,12 +36,13 @@ Route::post('/linguagem', [LinguagemController::class,'store'])->name('addLingua
 
 
 Route::get('/projecto/criar/', [ProjectoController::class,'create'])->name("projecto.criar");
-Route::post('/projecto', [ProjectoController::class,'store']);
-Route::get('/projecto/lista/', [ProjectoController::class,'allProjectosLinguagens'])->middleware();
-Route::get('projecto/enunciado/{projecto_nome}/{projecto_enunciado}',function ($projecto_nome,$projecto_enunciado){
-    return view('pdf.show',["nome"=>base64_decode($projecto_nome),"enunciado"=>base64_decode($projecto_enunciado)]);
-});
+Route::post('/projecto', [ProjectoController::class,'store'])->name("projecto.save");
+Route::get('/projecto/lista/', [ProjectoController::class,'allProjectosLinguagens']);
+//Route::get('projecto/enunciado/{projecto_nome}/{projecto_enunciado}',function ($projecto_nome,$projecto_enunciado){
+    //return view('pdf.show',["nome"=>base64_decode($projecto_nome),"enunciado"=>base64_decode($projecto_enunciado)]);
+//})->name('enunciado');
 
+Route::get('projecto/enunciado/{projecto_enunciado}', [ProjectoController::class,'enunciado'])->name('enunciado');
 
 Route::get('/teste', [EquipaController::class, 'show']);
 Route::post('/equipa', [EquipaController::class, 'store']);

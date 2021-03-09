@@ -22,7 +22,7 @@
                             <p><span><i class="fa fa-address-card"></i></span> <b>Manager:</b> {{$projecto->usname}}</p>
                         </div>
                         <div class="product-buttons">
-                            <a href="/projecto/enunciado/{{base64_encode($projecto->nome)}}/{{base64_encode($projecto->enunciado)}}"><button type="button" class="button-default cart-btn">Enunciado</button></a>
+                            <a href="{{route('enunciado',$projecto->enunciado)}}"><button type="button" class="button-default cart-btn">Enunciado</button></a>
                         </div>
                     </div>
                 </div>
