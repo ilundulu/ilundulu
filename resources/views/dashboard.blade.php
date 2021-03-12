@@ -103,7 +103,7 @@
                             <li>
                                 <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Equipa</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
-                                    <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">Registrar</span></a></li>
+                                    <li><a title="All Professors" href="{{route('equipa.criar')}}"><span class="mini-sub-pro">Registrar</span></a></li>
                                     <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Editar</span></a></li>
                                     <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Solicitar Equipa</span></a></li>
                                     <li><a title="Edit Professor" href="edit-professor.html"><span class="mini-sub-pro">Convidar Desenvolvedor</span></a></li>

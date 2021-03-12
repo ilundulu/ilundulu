@@ -44,6 +44,8 @@ Route::get('/projecto/lista/', [ProjectoController::class,'allProjectosLinguagen
 
 Route::get('projecto/enunciado/{projecto_enunciado}', [ProjectoController::class,'enunciado'])->name('enunciado');
 
-Route::get('/teste', [EquipaController::class, 'show']);
-Route::post('/equipa', [EquipaController::class, 'store']);
+Route::get('/equipa/criar/', [EquipaController::class, 'create'])->name("equipa.criar");
+Route::post('/equipa', [EquipaController::class,'store'])->name("equipa.save");
+Route::get('/equipa/all/', [EquipaController::class,'all'])->name("equipa.all");
+
 Route::get('/ajax-autocomplete-search', [EquipaController::class, 'selectSearch']);
