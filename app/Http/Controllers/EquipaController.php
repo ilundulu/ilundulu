@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Equipa;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\MembroController;
+
 class EquipaController extends Controller
 {
 
@@ -18,12 +21,14 @@ class EquipaController extends Controller
     public function store(Request $request){
         $equipa = new Equipa();
         $equipa->nome = $request->nome;
-
         //id do manager que publicou
         $user = Auth::user();
         $equipa->id_lider=$user->id;
-        
         $equipa->save();
+
+        $membro = new MembroController();
+        $membro->adminEquipa($this->last());
+
         return redirect()->route('equipa.all')->with('msg', 'Linguagem adicionada com sucesso');
     }
 
@@ -32,7 +37,12 @@ class EquipaController extends Controller
             ->select('*')
             ->get();
         return view('equipa.all',['equipas' => $equipas]);
-    }    
+    }  
+    
+    public function last(){
+        $ultimoEquipa = DB::table('equipas')->max('id');
+        return $ultimoEquipa;
+    }
 
     public function selectSearch(Request $request)
     {
