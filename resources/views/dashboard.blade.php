@@ -166,8 +166,6 @@
                                                     </li>
                                                     <li class="nav-item"><a href="#" class="nav-link">Sobre</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="#" class="nav-link">Compiladores e Interpretadores</a>
-                                                    </li>
                                                     <li class="nav-item"><a href="#" class="nav-link">Suporte</a>
                                                     </li>
                                                 </ul>
