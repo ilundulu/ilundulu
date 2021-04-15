@@ -11,7 +11,7 @@
                     <div class="courses-inner res-mg-b-30">
                         <div class="courses-title">
                             
-                            <h2><a href="{{$equipa->id}}">{{$equipa->nome}}</a></h2>
+                            <h2><a href="{{route('equipa.membro.save',['id_equipa'=>base64_encode($equipa->id),'nome'=>base64_encode($equipa->nome)])}}">{{$equipa->nome}}</a></h2>
                         </div>
 
                     </div>

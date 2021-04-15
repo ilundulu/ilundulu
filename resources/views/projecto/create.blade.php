@@ -21,23 +21,23 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
-                                                            <input name="nome" type="text" class="form-control" placeholder="Nome do Projecto">
+                                                            <input name="nome" type="text" class="form-control" placeholder="Nome do Projecto" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="integrantes" type="number" min="1" class="form-control" placeholder="Número de Integrantes Por Equipa">
+                                                            <input name="integrantes" type="number" min="1" class="form-control" placeholder="Número de Integrantes Por Equipa" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <select class="form-control" name="linguagem">
+                                                            <select class="form-control" name="linguagem" required>
                                                                 @foreach ($linguagens as $linguagem)
-                                                                <option value={{$linguagem->id}}>{{$linguagem->nome}}</option>    
+                                                                    <option value={{$linguagem->id}}>{{$linguagem->nome}}</option>    
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="data" type="date" class="form-control">
+                                                            <input name="data" type="date" min="{{ date('Y-m-d') }}" class="form-control" required>
                                                         </div>                                                        
                                                         <div class="form-group">
-                                                            <input name="hora" type="time" class="form-control">
+                                                            <input name="hora" type="time" class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

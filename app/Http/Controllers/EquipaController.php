@@ -18,6 +18,7 @@ class EquipaController extends Controller
         return view('equipa.create');
     }
 
+
     public function store(Request $request){
         $equipa = new Equipa();
         $equipa->nome = $request->nome;
@@ -29,7 +30,7 @@ class EquipaController extends Controller
         $membro = new MembroController();
         $membro->adminEquipa($this->last());
 
-        return redirect()->route('equipa.all')->with('msg', 'Linguagem adicionada com sucesso');
+        return redirect()->route('equipa.all')->with('msg', 'Equipa criada com sucesso');
     }
 
     public function all(){       
@@ -50,8 +51,8 @@ class EquipaController extends Controller
 
         if($request->has('q')){
             $search = $request->q;
-            $users =User::select("id", "email")
-            		->where('email', 'LIKE', "%$search%")
+            $users =User::select("users.id", "users.email")
+            		->where('users.email', 'LIKE', "$search%")
             		->get();
         }
         return response()->json($users);

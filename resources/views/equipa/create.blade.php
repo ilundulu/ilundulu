@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('title','Criar Projecto')
+@section('title','Adicionar Membro a Equipa')
 
 @section('content')
 

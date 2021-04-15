@@ -66,6 +66,9 @@
         <!-- modernizr JS
             ============================================ -->
         <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/select2.min.js')}}"></script>
     </head>
     
     <body>
@@ -104,7 +107,7 @@
                                 <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Equipa</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li><a title="All Professors" href="{{route('equipa.criar')}}"><span class="mini-sub-pro">Registrar</span></a></li>
-                                    <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Editar</span></a></li>
+                                    <li><a title="Add Professor" href="{{route('equipa.all')}}"><span class="mini-sub-pro">Lista das Equipas</span></a></li>
                                     <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Solicitar Equipa</span></a></li>
                                     <li><a title="Edit Professor" href="edit-professor.html"><span class="mini-sub-pro">Convidar Desenvolvedor</span></a></li>
                                 </ul>
@@ -113,6 +116,7 @@
                                 <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Projecto</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li><a href="{{ route('projecto.criar') }}"><span class="mini-sub-pro">Criar Projecto</span></a></li>
+                                    <li><a href="{{ route('projecto.lista') }}"><span class="mini-sub-pro">Lista de Projectos</span></a></li>
                                     <li><a href="add-student.html"><span class="mini-sub-pro">Editar</span></a></li>
                                     <li><a href="add-student.html"><span class="mini-sub-pro">Upload</span></a></li>
                                     <li><a href="add-student.html"><span class="mini-sub-pro">Envios</span></a></li>
@@ -357,6 +361,17 @@
                                 </button>
                             <i class="fa fa-times edu-danger-error admin-check-pro admin-check-pro-none" aria-hidden="true"></i>
                             <p><strong>Erro!</strong> {{session('msgErrorPdf')}}.</p>
+                            </div>
+                        @endif
+
+                        @if (session('msgError'))
+
+                        <div class="alert alert-danger alert-mg-b alert-success-style4 alert-success-stylenone">
+                            <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
+                                    <span class="icon-sc-cl" aria-hidden="true">&times;</span>
+                                </button>
+                            <i class="fa fa-times edu-danger-error admin-check-pro admin-check-pro-none" aria-hidden="true"></i>
+                            <p><strong>Erro!</strong> {{session('msgError')}}.</p>
                             </div>
                         @endif
 
