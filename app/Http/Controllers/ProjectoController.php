@@ -22,10 +22,10 @@ class ProjectoController extends Controller
 
     public function store(Request $request){
         $projecto = new Projecto();
-        $projecto->nome = $request->nome;
-        $projecto->integrantes = $request->integrantes;
+        $projecto->nome = filter_var($request->nome,FILTER_SANITIZE_SPECIAL_CHARS);
+        $projecto->integrantes = filter_var($request->integrantes,FILTER_SANITIZE_NUMBER_INT);
         $projecto->deadline = $request->data." ".$request->hora;
-        $projecto->id_linguagem=$request->linguagem;
+        $projecto->id_linguagem = filter_var($request->linguagem,FILTER_SANITIZE_NUMBER_INT);
 
         //id do manager que publicou
         $user = Auth::user();
@@ -89,13 +89,12 @@ class ProjectoController extends Controller
         $diretorio = dir($pasta);
         $array1 = [];
         while($array = $diretorio->read()){
-            array_push($array1,$array);
+            array_push($array1,base64_encode($array));
         }
         return $array1; 
     }
 
     public function codigo($id_equipa,$nome,$id_projecto){
-        //pasta
         $dev = new DensevolvimentoController();
         $pasta = public_path("projectos/".$dev->pastaProjecto($id_projecto)); 
         return view('projecto.codigo',['id_equipa'=>$id_equipa,'nome'=>$nome,'id_projecto'=>$id_projecto,'files'=>$this->listaFiles($pasta)]);
@@ -113,6 +112,64 @@ class ProjectoController extends Controller
         $diretorio->close();
     }
 
+    public function download(){
+        // Define o tempo máximo de execução em 0 para as conexões lentas
+        set_time_limit(0);
+        // Arqui você faz as validações e/ou pega os dados do banco de dados
+        $aquivoNome = 'projecto.zip'; // nome do arquivo que será enviado p/ download
+        $arquivoLocal = public_path("download/").$aquivoNome; // caminho absoluto do arquivo
+        // Verifica se o arquivo não existe
+        if (!file_exists($arquivoLocal)) {
+        // Exiba uma mensagem de erro caso ele não exista
+        exit;
+        }
+        // Aqui você pode aumentar o contador de downloads
+        // Definimos o novo nome do arquivo
+        $novoNome = 'projecto.zip';
+        // Configuramos os headers que serão enviados para o browser
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename="'.$novoNome.'"');
+        header('Content-Type: application/octet-stream');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: ' . filesize($aquivoNome));
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Expires: 0');
+        // Envia o arquivo para o cliente
+        readfile($aquivoNome);
+    }
+
+    public function criarZip($id_projecto){
+
+        // Inicia a instância da classe ZipArchive
+        $zip = new ZipArchive;
+        $dev = new DensevolvimentoController();
+        $pasta = $dev->pastaProjecto($id_projecto);
+        // Cria um novo arquivo .zip chamado minhas_fotos.zip
+        $zip->open(public_path("download/projecto.zip"), ZipArchive::CREATE);
+
+        $diretorio = dir(public_path("projectos/".$pasta));
+
+        while($array = $diretorio->read()){
+            if($array != '.' && $array != '..'){
+                //unlink(public_path("projectos/".$pasta."/".$array));
+
+                // Adiciona um arquivo à pasta
+                $zip->addFile( 
+                    // Caminho do arquivo original
+                    public_path("projectos/".$pasta."/".$array),
+                    // Novo nome do arquivo
+                    $array 
+                );
+            }
+        }
+        // Fecha a pasta e salva o arquivo
+        $zip->close();
+
+        $this->download();
+        
+        return(public_path("download/projecto.zip"));
+    }
 
     public function descompactar($ficheiro,$pasta){
         $zip = new ZipArchive();
@@ -133,8 +190,9 @@ class ProjectoController extends Controller
     public function upload(Request $request){
         $codigoZip = $request->codigo;
         $dev = new DensevolvimentoController();
-        $extencao = $codigoZip->extension();
         $pasta = $dev->pastaProjecto($request->id_projecto);
+        $extencao = $codigoZip->extension();
+        
         
         if($extencao == "zip"){
             if($this->isPastaEmpty(public_path("projectos/".$pasta)) == 1){

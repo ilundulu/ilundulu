@@ -98,7 +98,7 @@
                                                                     <div class="form-group">
                                                                         <input type="hidden" value="{{$id_equipa}}" name="id_equipa">
                                                                         <input type="hidden" value="{{$nome}}" name="nome">
-                                                                        <div class="container mt-5"  >
+                                                                        <div class="container mt-5">
                                                                             
                                                                             <select class="projectos form-control" name="id_projecto"></select>
                                                                         </div>

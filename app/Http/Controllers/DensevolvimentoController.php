@@ -20,8 +20,8 @@ class DensevolvimentoController extends Controller
     public function addProjecto(Request $request){
         if($this->isProjectoEquipa(base64_decode($request->id_equipa), $request->id_projecto)==0){
             $dev = new Desenvolvimento();
-            $dev->id_equipa = base64_decode($request->id_equipa);
-            $dev->id_projecto = $request->id_projecto;
+            $dev->id_equipa = filter_var (base64_decode($request->id_equipa), FILTER_SANITIZE_STRING);
+            $dev->id_projecto = filter_var ($request->id_projecto,FILTER_SANITIZE_NUMBER_INT);
             $dev->estado = "0";
             $dev->pasta = md5($request->id_equipa.$request->id_projecto).strtotime("now");
             $dev->modificacoes=date("Y-m-d");

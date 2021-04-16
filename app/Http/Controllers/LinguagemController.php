@@ -21,9 +21,9 @@ class LinguagemController extends Controller
 
     public function store(Request $request){
         $linguagem = new Linguagen();
-        $linguagem->nome = $request->nome;
-        $linguagem->compilador_interpretador = $request->compilador_interpretador;
-        $linguagem->descricao = $request->descricao;
+        $linguagem->nome = filter_var ($request->nome,FILTER_SANITIZE_SPECIAL_CHARS);
+        $linguagem->compilador_interpretador = filter_var($request->compilador_interpretador,FILTER_SANITIZE_SPECIAL_CHARS);
+        $linguagem->descricao = filter_var($request->descricao,FILTER_SANITIZE_SPECIAL_CHARS);
         $linguagem->save();
         return redirect()->route('allLinguagem')->with('msg', 'Linguagem adicionada com sucesso');
     }

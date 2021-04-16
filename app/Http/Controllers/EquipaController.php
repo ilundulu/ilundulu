@@ -23,7 +23,7 @@ class EquipaController extends Controller
 
     public function store(Request $request){
         $equipa = new Equipa();
-        $equipa->nome = $request->nome;
+        $equipa->nome = filter_var($request->nome,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         //id do manager que publicou
         $user = Auth::user();
         $equipa->id_lider=$user->id;

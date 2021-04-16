@@ -10,7 +10,7 @@ class MembroController extends Controller
 {
     public function adminEquipa($id_time){
         $membro = new Membro();
-        $membro->id_equipa = $id_time;
+        $membro->id_equipa = filter_var($id_time,FILTER_SANITIZE_NUMBER_INT);
         //id do manager que publicou
         $user = Auth::user();
         $membro->id_membro=$user->id;
@@ -49,8 +49,8 @@ class MembroController extends Controller
     public function addMembro(Request $request){
         if($this->isEquipaMembro(base64_decode($request->id_equipa), $request->id_membro)==0){
             $membro = new membro();
-            $membro->id_equipa = base64_decode($request->id_equipa);
-            $membro->id_membro = $request->id_membro;
+            $membro->id_equipa = filter_var(base64_decode($request->id_equipa),FILTER_SANITIZE_NUMBER_INT);
+            $membro->id_membro = filter_var($request->id_membro,FILTER_SANITIZE_NUMBER_INT);
             $membro->estado = "0";
             $membro->save();   
             return 1;
