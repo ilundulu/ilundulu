@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\MembroController;
-use App\Http\Controllers\DesenvolvimentoController;
+
 use App\Http\Controllers\ProjectoController;
 
 class EquipaController extends Controller

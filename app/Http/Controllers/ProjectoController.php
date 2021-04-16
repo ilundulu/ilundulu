@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Desenvolvimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Projecto;
 use App\Models\Linguagen;
 use Illuminate\Support\Facades\DB;
+use ZipArchive;
+use App\Http\Controllers\DensevolvimentoController;
 
 class ProjectoController extends Controller
 {
@@ -80,5 +83,69 @@ class ProjectoController extends Controller
     public function qtdElementosProjecto($id_projecto){
         $qtd = Projecto::orderBy('integrantes','desc')->first()->integrantes;
         return $qtd;
+    }
+
+    public function listaFiles($pasta){
+        $diretorio = dir($pasta);
+        $array1 = [];
+        while($array = $diretorio->read()){
+            array_push($array1,$array);
+        }
+        return $array1; 
+    }
+
+    public function codigo($id_equipa,$nome,$id_projecto){
+        //pasta
+        $dev = new DensevolvimentoController();
+        $pasta = public_path("projectos/".$dev->pastaProjecto($id_projecto)); 
+        return view('projecto.codigo',['id_equipa'=>$id_equipa,'nome'=>$nome,'id_projecto'=>$id_projecto,'files'=>$this->listaFiles($pasta)]);
+    }
+
+    public function apagarFiles($pasta){
+        $diretorio = dir(public_path("projectos/".$pasta));
+
+        while($array = $diretorio->read()){
+            if($array != '.' && $array != '..'){
+                unlink(public_path("projectos/".$pasta."/".$array));
+            }
+        }
+
+        $diretorio->close();
+    }
+
+
+    public function descompactar($ficheiro,$pasta){
+        $zip = new ZipArchive();
+        if($zip->open($ficheiro)===TRUE){
+            $zip->extractTo(public_path("projectos/".$pasta));
+            $zip->close();
+            return 1;
+        }
+        return 0;
+    }
+
+    public function isPastaEmpty($pasta){
+        $diretorio = dir($pasta);
+        return ($diretorio == 'empty')?1:0;
+    }
+
+
+    public function upload(Request $request){
+        $codigoZip = $request->codigo;
+        $dev = new DensevolvimentoController();
+        $extencao = $codigoZip->extension();
+        $pasta = $dev->pastaProjecto($request->id_projecto);
+        
+        if($extencao == "zip"){
+            if($this->isPastaEmpty(public_path("projectos/".$pasta)) == 1){
+                $this->descompactar($request->codigo,$pasta);
+                return redirect()->route('equipa.projecto.dev',['id_equipa'=>$request->id_equipa,'nome'=>$request->nome,'id_projecto'=>$request->id_projecto,'files'=>$this->listaFiles(public_path("projectos/".$pasta))])->with('msg', 'Carregamento feito');
+            }else{
+                $this->apagarFiles($pasta);
+                $this->descompactar($request->codigo,$pasta);
+                return redirect()->route('equipa.projecto.dev',['id_equipa'=>$request->id_equipa,'nome'=>$request->nome,'id_projecto'=>$request->id_projecto,'files'=>$this->listaFiles(public_path("projectos/".$pasta))])->with('msg', 'Carregamento feito');
+            }
+        }
+        return redirect()->route('equipa.projecto.dev',['id_equipa'=>$request->id_equipa,'nome'=>$request->nome,'id_projecto'=>$request->id_projecto,'files'=>$this->listaFiles(public_path("projectos/".$pasta))])->with('msgErrorPdf', "A extensão ".$extencao." Não suportada");
     }
 }

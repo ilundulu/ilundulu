@@ -62,3 +62,7 @@ Route::get('/equipa/membro/all/{id_equipa}/{nome}', [EquipaController::class,'me
 Route::get('/equipa/membro/remover/{id_membro}/{id_equipa}/{nome}', [EquipaController::class,'remMembro'])->name("membro.equipa.remover");
 Route::get('/equipa/membro/aceitar/{id_membro}/{id_equipa}/{nome}', [EquipaController::class,'aceitarConvite'])->name("membro.equipa.aceitar");
 Route::post('/equipa/projecto/adicionar/', [EquipaController::class,'solicitarProjecto'])->name("projecto.equipa.add");
+
+
+Route::get('/equipa/projecto/codigo/{id_equipa}/{nome}/{id_projecto}', [ProjectoController::class,'codigo'])->name("equipa.projecto.dev");
+Route::post('/equipa/projecto/carregar/', [ProjectoController::class,'upload'])->name("projecto.equipa.upload");

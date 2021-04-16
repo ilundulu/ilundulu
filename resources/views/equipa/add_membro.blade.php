@@ -114,21 +114,19 @@
                                                                             <tr>
                                                                                 <th>Nome</th>
                                                                                 <th>Linguagem</th>
-                                                                                <th>Estado</th>
-                                                                                <th>Estado</th>
                                                                             </tr>
                                                                             @foreach ($projectos as $projecto)
                                                                                 <tr>
-                                                                                    <td>{{$projecto->projname}}</td>
+                                                                                    <td><a href="{{route('equipa.projecto.dev',['id_equipa'=>$id_equipa,'nome'=>$nome,'id_projecto'=>$projecto->id])}}"> {{$projecto->projname}}<a></td>
                                                                                     <td>{{$projecto->lpname}}</td>
         
-                                                                                    <td>
+                                                                                   <!-- <td>
                                                                                         @if($membro->id_lider != Auth::id() && $membro->estado=="0" && $membro->id_membro == Auth::id() )
                                                                                             <a href="{{route('membro.equipa.aceitar',['id_membro'=>$membro->id,'id_equipa'=>$id_equipa,'nome'=>$nome])}}"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
                                                                                         @elseif($membro->id_lider == Auth::id() && $membro->id_membro != Auth::id())
                                                                                             <a href="{{route('membro.equipa.remover',['id_membro'=>$membro->id,'id_equipa'=>$id_equipa,'nome'=>$nome])}}"><i class="fa fa-times" aria-hidden="true"></i></a>                                                                                   
                                                                                         @endif
-                                                                                    </td>
+                                                                                    </td>-->
                                       
                                                                                 </tr>
                                                                             @endforeach    

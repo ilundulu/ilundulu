@@ -23,11 +23,16 @@ class DensevolvimentoController extends Controller
             $dev->id_equipa = base64_decode($request->id_equipa);
             $dev->id_projecto = $request->id_projecto;
             $dev->estado = "0";
-            $dev->pasta = md5($request->id_equipa)."/".md5($request->id_projecto).strtotime("now");
+            $dev->pasta = md5($request->id_equipa.$request->id_projecto).strtotime("now");
             $dev->modificacoes=date("Y-m-d");
             $dev->save();   
             return 1;
         }
         return 0;
+    }
+
+    public function pastaProjecto($id_projecto){
+        $pasta = Desenvolvimento::orderBy('pasta','desc')->first()->pasta;
+        return $pasta;
     }
 }
