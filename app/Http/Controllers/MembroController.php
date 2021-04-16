@@ -18,9 +18,6 @@ class MembroController extends Controller
         $membro->save();        
     }
 
-    public function equipas(){
-        
-    }
 
     public function membrosPorEquipa($id_equipa){
         $membros = DB::table('membros')
@@ -32,9 +29,7 @@ class MembroController extends Controller
         return $membros;
     }
 
-    public function membroView($id_equipa,$nome){
-        return view('equipa.add_membro',['id_equipa'=>$id_equipa,'nome'=>$nome,'membros'=>$this->membrosPorEquipa(base64_decode($id_equipa))]);
-    }
+
 
     public function qtdMembros($id_equipa){
         $qtd = DB::table('membros')
@@ -58,24 +53,24 @@ class MembroController extends Controller
             $membro->id_membro = $request->id_membro;
             $membro->estado = "0";
             $membro->save();   
-            return redirect()->route('equipas.membros.all',['id_equipa'=>$request->id_equipa,'nome'=>$request->nome,'membros'=>$this->membrosPorEquipa(base64_decode($request->id_equipa))])->with('msg', 'Membro convidadado com sucesso');
+            return 1;
         }
-        return redirect()->route('equipas.membros.all',['id_equipa'=>$request->id_equipa,'nome'=>$request->nome,'membros'=>$this->membrosPorEquipa(base64_decode($request->id_equipa))])->with('msgError', 'Membro já faz parte da equipa');
+        return 0;
     }
 
-    public function remMembro($id_membro,$id_equipa,$nome){
+    public function remMembro($id_membro){
         DB::table('membros')
             ->where('id_membro', '=', $id_membro)
             ->delete();
-        return view('equipa.add_membro',['id_equipa'=>$id_equipa,'nome'=>$nome,'membros'=>$this->membrosPorEquipa(base64_decode($id_equipa))])->with('msg', 'Membro convidadado com sucesso');
+        return 1;
     }
 
-    public function aceitarConvite($id_membro,$id_equipa,$nome){
+    public function aceitarConvite($id_membro){
         DB::table('membros')
               ->where('id_membro', $id_membro)
               ->update(['estado' => "1"]);
         
-        return view('equipa.add_membro',['id_equipa'=>$id_equipa,'nome'=>$nome,'membros'=>$this->membrosPorEquipa(base64_decode($id_equipa))])->with('msg', 'Membro convidadado com sucesso');
+        return 1;
 
     }
 

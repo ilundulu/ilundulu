@@ -44,16 +44,21 @@ Route::get('/projecto/lista/', [ProjectoController::class,'allProjectosLinguagen
 //})->name('enunciado');
 
 Route::get('projecto/enunciado/{projecto_enunciado}', [ProjectoController::class,'enunciado'])->name('enunciado');
+Route::get('/buscar/projectos', [ProjectoController::class, 'selectSearch'])->name("buscar.projectos");
+
 
 Route::get('/equipa/criar/', [EquipaController::class, 'create'])->name("equipa.criar");
 Route::post('/equipa', [EquipaController::class,'store'])->name("equipa.save");
 Route::get('/equipa/all/', [EquipaController::class,'all'])->name("equipa.all");
-Route::get('/equipa/membro/{id_equipa}/{nome}', [MembroController::class,"membroView"])->name("equipa.membro.save");
+Route::get('/equipa/membro/{id_equipa}/{nome}', [EquipaController::class,"membroView"])->name("equipa.membro.save");
 
 Route::get('/ajax-autocomplete-search', [EquipaController::class, 'selectSearch'])->name("membro");
 
 
-Route::post('/equipa/membro', [MembroController::class,'addMembro'])->name("membro.equipa.add");
-Route::get('/equipa/membro/all/{id_equipa}/{nome}', [MembroController::class,'membroView'])->name("equipas.membros.all");
-Route::get('/equipa/membro/remover/{id_membro}/{id_equipa}/{nome}', [MembroController::class,'remMembro'])->name("membro.equipa.remover");
-Route::get('/equipa/membro/aceitar/{id_membro}/{id_equipa}/{nome}', [MembroController::class,'aceitarConvite'])->name("membro.equipa.aceitar");
+
+
+Route::post('/equipa/membro', [EquipaController::class,'addMembro'])->name("membro.equipa.add");
+Route::get('/equipa/membro/all/{id_equipa}/{nome}', [EquipaController::class,'membroView'])->name("equipas.membros.all");
+Route::get('/equipa/membro/remover/{id_membro}/{id_equipa}/{nome}', [EquipaController::class,'remMembro'])->name("membro.equipa.remover");
+Route::get('/equipa/membro/aceitar/{id_membro}/{id_equipa}/{nome}', [EquipaController::class,'aceitarConvite'])->name("membro.equipa.aceitar");
+Route::post('/equipa/projecto/adicionar/', [EquipaController::class,'solicitarProjecto'])->name("projecto.equipa.add");

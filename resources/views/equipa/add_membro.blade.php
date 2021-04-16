@@ -10,10 +10,12 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-payment-inner-st">
                     <ul id="myTabedu1" class="tab-review-design">
-                        <li class="active"><a href="#description">{{base64_decode($nome)}}</a></li>
+                        <li class="active"><a href="#membros">{{base64_decode($nome)}}</a></li>
+
+                        <li><a href="#proj"> Projectos</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
-                        <div class="product-tab-list tab-pane fade active in" id="description">
+                        <div class="product-tab-list tab-pane fade active in" id="membros">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
@@ -77,6 +79,75 @@
                                 </div>
                             </div>    
                         </div>
+                        <div class="product-tab-list tab-pane fade" id="proj">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-content-section">
+                                        <div id="dropzone1" class="pro-ad addcoursepro">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                
+                                                    <form action="{{route('projecto.equipa.add')}}" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                        @csrf
+                                                        <div class="row">
+                                                            
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                
+        
+                                                                @if($membros[0]->id_lider == Auth::id())
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" value="{{$id_equipa}}" name="id_equipa">
+                                                                        <input type="hidden" value="{{$nome}}" name="nome">
+                                                                        <div class="container mt-5"  >
+                                                                            
+                                                                            <select class="projectos form-control" name="id_projecto"></select>
+                                                                        </div>
+                                                                        <br>
+                                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Convidar</button>
+                                                                    </div>
+                                                                @endif
+                                                                <div class="product-status-wrap">
+                                                                    <h4>Lista de Solicitações de Projecto</h4>
+        
+                                                                    <div class="asset-inner">
+                                                                        <table>
+                                                                            <tr>
+                                                                                <th>Nome</th>
+                                                                                <th>Linguagem</th>
+                                                                                <th>Estado</th>
+                                                                                <th>Estado</th>
+                                                                            </tr>
+                                                                            @foreach ($projectos as $projecto)
+                                                                                <tr>
+                                                                                    <td>{{$projecto->projname}}</td>
+                                                                                    <td>{{$projecto->lpname}}</td>
+        
+                                                                                    <td>
+                                                                                        @if($membro->id_lider != Auth::id() && $membro->estado=="0" && $membro->id_membro == Auth::id() )
+                                                                                            <a href="{{route('membro.equipa.aceitar',['id_membro'=>$membro->id,'id_equipa'=>$id_equipa,'nome'=>$nome])}}"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                                                                                        @elseif($membro->id_lider == Auth::id() && $membro->id_membro != Auth::id())
+                                                                                            <a href="{{route('membro.equipa.remover',['id_membro'=>$membro->id,'id_equipa'=>$id_equipa,'nome'=>$nome])}}"><i class="fa fa-times" aria-hidden="true"></i></a>                                                                                   
+                                                                                        @endif
+                                                                                    </td>
+                                      
+                                                                                </tr>
+                                                                            @endforeach    
+                                                                        </table>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                
+                                                            </div>
+                                                                
+                                                        </div> 
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,6 +168,28 @@
                     results: $.map(data, function (item) {
                         return {
                             text: item.email,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $('.projectos').select2({
+        placeholder: 'Solicitar Projecto...',
+        ajax: {
+            url: "{{route('buscar.projectos')}}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nome,
                             id: item.id
                         }
                     })

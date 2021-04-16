@@ -54,4 +54,31 @@ class ProjectoController extends Controller
     public function enunciado($enunciado){
         return view('pdf.show',['enunciado' => $enunciado]);
     }  
+
+    public function selectSearch(Request $request)
+    {
+    	$projectos = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $projectos =Projecto::select("projectos.id", "projectos.nome")
+            		->where('projectos.nome', 'LIKE', "$search%")
+            		->get();
+        }
+        return response()->json($projectos);
+    }
+    public function projectosPorEquipa($id_equipa){
+        $projectos = DB::table('desenvolvimentos')
+            ->join('projectos', 'projectos.id', '=', 'desenvolvimentos.id_projecto')
+            ->join('linguagens', 'linguagens.id', '=', 'projectos.id_linguagem')
+            ->where('desenvolvimentos.id_equipa',$id_equipa)
+            ->select('desenvolvimentos.*', DB::raw('linguagens.nome as lpname'), DB::raw('projectos.nome as projname'), DB::raw('projectos.enunciado as enunciado'))
+            ->get();
+        return $projectos;
+    }
+
+    public function qtdElementosProjecto($id_projecto){
+        $qtd = Projecto::orderBy('integrantes','desc')->first()->integrantes;
+        return $qtd;
+    }
 }
